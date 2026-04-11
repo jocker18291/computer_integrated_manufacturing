@@ -23,4 +23,17 @@ def johnson_algorithm(jobs):
 
     # 4. We sum sets
     return n1 + n2
+
+def calculate_cmax(sequence):
+    """
+    Function that calculates Cmax time for given sequence of tasks
+    """
+    t1 = 0 # time to finish the operation on machine 1
+    t2 = 0 # time to finish the operation on machine 2
+
+    for job in sequence:
+        t1 += job[1]
+        # The machine 2 can start working on the task only when the prior one is finished AND when the task is gone from machine 1
+        t2 = max(t1, t2) + job[2]
     
+    return t2
