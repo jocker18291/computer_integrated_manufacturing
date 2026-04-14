@@ -1,4 +1,17 @@
 import itertools
+import random
+
+def generate_jobs(n, seed=None):
+    if seed is not None:
+        random.seed(seed)
+
+    jobs = []
+    for j in range(1, n + 1):
+        p1 = random.randint(1, 29)
+        p2 = random.randint(1, 29)
+        jobs.append((j, p1, p2))
+
+    return jobs
 
 def brute_force_algorithm(jobs):
     best_sequence = None
@@ -24,12 +37,13 @@ def calculate_cmax(sequence):
     return t2
 
 if __name__ == "__main__":
-    jobs = [
-        (1, 4, 1),
-        (2, 4, 3),
-        (3, 1, 2),
-        (4, 5, 1)
-    ]
+
+    n = 5
+    seed = 42
+
+    jobs = generate_jobs(n, seed)
+
+    print("Jobs:", jobs)
 
     best_seq, best_cmax = brute_force_algorithm(jobs)
 
