@@ -2,7 +2,7 @@ from __future__ import annotations
 from typing import Sequence
 from lab2.johnson import johnson_algorithm
 
-Job = tuple[int, int, int]
+Job = tuple[int, int, int] # [id, time_M1, time_M2]
 
 def calculate_cmax(sequence: Sequence[Job]) -> int:
     t1 = 0
