@@ -10,7 +10,7 @@ def dp_total_weighted_tardiness(p, w, d):
         for j in range(n):
             if mask & (1 << j):
                 sum_p += p[j]
-        
+
         for j in range(n):
             if mask & (1 << j):
                 tardiness = max(sum_p - d[j], 0)
@@ -22,6 +22,7 @@ def dp_total_weighted_tardiness(p, w, d):
 
                 if total_cost < memory[mask]:
                     memory[mask] = total_cost
-    
-    return memory[max_mask - 1]
+
+    return memory
+
 
