@@ -2,6 +2,7 @@ import time
 
 from instance import generate_instance
 from neh import neh, neh_plus_rule_1
+from insa import INSA
 
 
 def _measure(fn, *args):
@@ -33,6 +34,18 @@ def run_case(label, processing_times):
     print(
         f"NEH+ (rule 1)       : Cmax = {r1_cmax:>6}   "
         f"pi = {r1_sequence}   time = {r1_time:.6f}s"
+    )
+
+    insa_jobs_data = [
+        [(machine_id, time) for machine_id, time in enumerate(job_times)]
+        for job_times in processing_times
+    ]
+
+    (insa_result, insa_time) = _measure(INSA, insa_jobs_data)
+    insa_cmax, insa_schedule = insa_result
+    print(
+        f"INSA                 : Cmax = {insa_cmax:>6}   "
+        f"time = {insa_time:.6f}s"
     )
 
 if __name__ == "__main__":
