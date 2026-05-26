@@ -52,7 +52,7 @@ def run_case(label, processing_times):
         f"pi = {r1_sequence}   time = {r1_time:.6f}s"
     )
 
-    # Konwersja danych z Flow Shop na format Job Shop, aby sprawdzić INSA na danych kolegów
+    # Konwersja danych z Flow Shop na format Job Shop, aby sprawdzić INSA
     insa_jobs_data = [
         [(machine_id, time) for machine_id, time in enumerate(job_times)]
         for job_times in processing_times
@@ -77,9 +77,9 @@ def run_job_shop_case(label, jobs_data):
     insa_cmax, insa_schedule = insa_result
     print(
         f"\nINSA (na Job Shop)   : Cmax = {insa_cmax:>6}   "
-        f"time = {insa_time:.6f}s"
+        f"time = {insa_time:.6f}s   \n"
+        f"result: {insa_schedule}"
     )
-# ------------------------------------------------------------------
 
 
 if __name__ == "__main__":
@@ -87,10 +87,10 @@ if __name__ == "__main__":
     m = 5
     seed = 42
 
-    # 1. Kod kolegów (3.0/4.0) - generuje Flow Shop i uruchamia NEH, NEH+ oraz INSA
+    # 1.Generuje Flow Shop i uruchamia NEH, NEH+ oraz INSA
     processing_times = generate_instance(n=n, m=m, seed=seed, p_min=1, p_max=29)
     run_case("Dane Flow Shop (FP||Cmax) - Porownanie NEH i INSA", processing_times)
 
-    # 2. Twój dodatek (5.0) - generuje prawidziwy Job Shop i uruchamia INSA
+    # 2. Generuje prawidziwy Job Shop i uruchamia INSA
     job_shop_data = generate_job_shop_instance(n=n, m=m, seed=seed, p_min=1, p_max=29)
     run_job_shop_case("Dane Job Shop (J||Cmax) - Wymog na ocene 5.0", job_shop_data)
