@@ -1,6 +1,7 @@
 import random
 from simulated_annealing import symulowane_wyzarzanie
 from utils import DANE_TESTOWE, oblicz_cmax
+from random_search import random_search
 
 if __name__ == "__main__":
 
@@ -27,7 +28,10 @@ if __name__ == "__main__":
     print(
         f"1. Rozwiązanie Losowe:       C_max = {cmax_poczatkowe} (Odniesienie)"
     )
-    # print(f"2. Local/Random Search (3.0): C_max = {cmax_3_0}")
+    najlepsza_sekwencja_3, najlepsze_cmax_3 = random_search(permutacja_poczatkowa, DANE_TESTOWE, iterations=1000)
+    print(
+        f"2. Local/Random Search (3.0): C_max = {najlepsze_cmax_3} | Najlepsza sekwencja: {najlepsza_sekwencja_3}"
+    )
 
     print(
         f"3. Symulowane Wyżarzanie (4.0): C_max = {najlepsze_cmax_4} | Najlepsza sekwencja: {najlepsza_sekwencja_4}"
