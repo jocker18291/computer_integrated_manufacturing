@@ -16,7 +16,6 @@ from neh import neh
 
 
 def _neh_dla_slownika(dane_zadan):
-    """Uruchomienie NEH z lab4 na danych w formacie slownikowym."""
     klucze = sorted(dane_zadan.keys())
     macierz_p = [dane_zadan[k] for k in klucze]
     kolejnosc_idx, cmax = neh(macierz_p)
@@ -26,13 +25,25 @@ def _neh_dla_slownika(dane_zadan):
 
 if __name__ == "__main__":
 
+    # Wyświetlanie definiowanego problemu (DANE_TESTOWE)
+    print("\n==================================================")
+    print("               DANE PROBLEMU (FLOW SHOP)          ")
+    print("==================================================")
+    print(" Zadanie | M1 | M2 | M3 ")
+    print("------------------------")
+    for zadanie, czasy in DANE_TESTOWE.items():
+        # Zakładając, że maszyny to kolejne elementy listy
+        czasy_str = " | ".join(f"{czas:2}" for czas in czasy)
+        print(f"    {zadanie:2}   | {czasy_str} ")
+    print("==================================================\n")
+
     permutacja_poczatkowa = list(DANE_TESTOWE.keys())
     random.shuffle(permutacja_poczatkowa)
     cmax_poczatkowe = oblicz_cmax(permutacja_poczatkowa, DANE_TESTOWE)
 
-    print("\n[STAN POCZĄTKOWY]")
-    print(f"Losowa sekwencja zadań: {permutacja_poczatkowa}")
-    print(f"C_max początkowe:       {cmax_poczatkowe}")
+    print("[STAN POCZĄTKOWY]")
+    print(f"Losowa sekwencja zadań (permutacja początkowa): {permutacja_poczatkowa}")
+    print(f"C_max początkowe:                               {cmax_poczatkowe}")
 
     T0 = 100.0
     T_END = 0.01
@@ -56,21 +67,21 @@ if __name__ == "__main__":
     print("\n==================================================")
     print("               PORÓWNANIE WYNIKÓW                 ")
     print("==================================================")
-    print(f"1. Rozwiązanie losowe:          C_max = {cmax_poczatkowe}")
+    print(f"1. Rozwiązanie losowe:            C_max = {cmax_poczatkowe}")
     print(
-        f"2. Random Search (3.0):         C_max = {najlepsze_cmax_3}"
+        f"2. Random Search:                 C_max = {najlepsze_cmax_3}"
         f" | sekwencja: {najlepsza_sekwencja_3}"
     )
     print(
-        f"3. NEH (lab4, konstrukcyjny):  C_max = {cmax_neh}"
+        f"3. NEH (lab4, konstrukcyjny):     C_max = {cmax_neh}"
         f" | sekwencja: {kolejnosc_neh}"
     )
     print(
-        f"4. Symulowane Wyzarzanie (5.0): C_max = {najlepsze_cmax_sa}"
+        f"4. Symulowane Wyzarzanie:         C_max = {najlepsze_cmax_sa}"
         f" | sekwencja: {najlepsza_sekwencja_sa}"
     )
     print(
-        f"5. Tabu Search (5.0):          C_max = {najlepsze_cmax_tabu}"
+        f"5. Tabu Search:                   C_max = {najlepsze_cmax_tabu}"
         f" | sekwencja: {najlepsza_sekwencja_tabu}"
     )
     print("==================================================")

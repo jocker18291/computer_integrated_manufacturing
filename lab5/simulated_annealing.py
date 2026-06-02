@@ -4,7 +4,7 @@ from utils import oblicz_cmax
 
 
 def symulowane_wyzarzanie(t0, t_end, L, alpha, dane_zadan):
-    """Implementacja algorytmu Symulowanego Wyżarzania na ocenę 4.0."""
+    """Implementacja algorytmu Symulowanego Wyżarzania"""
     zadania = list(dane_zadan.keys())
 
     # Rozwiązanie początkowe
